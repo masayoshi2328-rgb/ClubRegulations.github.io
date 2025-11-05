@@ -36,6 +36,7 @@
         }
     </style>
 </head>
+<header id="toTopBtn"></header>
 
 <body>
     <style>
@@ -98,10 +99,20 @@
         }
     </style>
     <style>
-        /*【.padLR】左右に隙間を空けるclass*/
-        .padLR {
-            padding-left: 50px;
+        /*【.padLR】左右に隙間を空けるclass PCとスマホで間隔を変更*/
+        .padLR p,
+        .padLR h4 {
+            padding-left: 200px;
             padding-right: 50px;
+        }
+
+        @media screen and (max-width: 1000px) {
+
+            .padLR p,
+            .padLR h4 {
+                padding-left: 50px;
+                padding-right: 50px;
+            }
         }
     </style>
     <style>
@@ -354,7 +365,8 @@
             ○ベルト<br>
             ○靴下【黒】<br>
             ○革靴もしくはローファー<br>
-            　ただしその日の天候ややむを得ない理由がある場合に限り団長の許可があれば上記以外の服装での活動ができる<br>
+            　ただしその日の天候ややむを得ない理由がある場合に限り<br>
+            団長の許可があれば上記以外の服装での活動ができる<br>
         </p>
         <h4 id="12">第十二条(練習)</h4>
         <p>　通常の練習については以下の通りとする<br>
@@ -412,7 +424,7 @@
             ３月：春季四国地区高等学校野球大会(応)<br>
         </p>
         <h4 id="20">第二十条(応援団日誌について)</h4>
-        <p>　団日誌の運営については以下の通りとする
+        <p>　団日誌の運営については以下の通りとする<br>
             ・団日誌は活動の記録を通して「活動の反省」「活動状況の管理」を目的とする<br>
             ・団日誌は練習後と活動後に記入し次回の練習または活動まで記入者が保管する<br>
             ・団日誌の管理については団員で回す当番制を採用する<br>
@@ -505,8 +517,9 @@
         <p></p>
         <p style="font-size: 10px;">附則　この応援団規則は令和七年x月x日から施行する</p>
     </div><br>
+
     <!--add-sec Copyright-->
-    <footer style="text-align: left;" class="padLR">
+    <footer style="text-align: center; padding-left: 50px; padding-right: 50px;">
         <br>
         <p>Special thanks to:
             <strong>Kana Murakami</strong>,
@@ -517,7 +530,47 @@
             <strong>Rio Shibata</strong>(Idea).
         </p>
         <p>Website developed by <strong>Masaharu Yasuga</strong> (Concept & Design & Programming).</p>
-        <p>© 2025 Takamatu H.S. Cheearleading Club. All rights reserved.</p>
+        <p>© 2025 Takamatsu H.S. Cheerleading Club. All rights reserved.</p>
+
+        <button class="topButton">TOP</button>
+        <div>
+            <style>
+                .topButton {
+                    display: none;
+                    /*非表示*/
+                    position: fixed;
+                    /*位置を固定*/
+                    bottom: 30px;
+                    right: 30px;
+                    width: 80px;
+                    height: 80px;
+                    background-color: #a00000;
+                    font-size: 20px;
+                    color: white;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    border: 3px solid lightgray;
+                }
+            </style>
+            <script>
+                const topButton = document.querySelector('.topButton');
+
+                topButton.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 3000) {
+                        topButton.style.display = 'block';
+                    } else {
+                        topButton.style.display = 'none';
+                    }
+                });
+            </script>
+        </div>
     </footer>
 
 
