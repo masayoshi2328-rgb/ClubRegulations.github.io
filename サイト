@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>パスワードで保護されたページ</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    /* ページ全体を最初は非表示に */
+    body.locked {
+      display: none;
+    }
+
+    /* ログイン画面のスタイル */
+    #login-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: sans-serif;
+    }
+    input {
+      padding: 5px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body class="locked">
+
+  <!-- ↓ここからが本物のページ内容（保護対象） -->
+  <div id="page-content">
+    <h1>🔒 限定ページ</h1>
+    <p>これはパスワードを入力しないと見られないページです。</p>
+    <p>マリオとクッパの秘密の脚本メモもここに書けます。</p>
+  </div>
+
+  <!-- パスワード入力画面（body外で別扱いにしてもOK） -->
+  <div id="login-screen">
+    <h2>パスワードを入力してください</h2>
+    <input type="password" id="pass" placeholder="Password">
+    <button id="enterBtn">送信</button>
+    <p id="error" style="color:red;"></p>
+  </div>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", function() {
+      const correct = "mario2025"; // ← ここでパスワード設定
+      const pass = document.getElementById("pass");
+      const button = document.getElementById("enterBtn");
+      const error = document.getElementById("error");
+      const login = document.getElementById("login-screen");
+      const body = document.body;
+
+      button.addEventListener("click", function(event) {
+        event.preventDefault();
+        if (pass.value === correct) {
+          login.style.display = "none";   // 入力画面を消す
+          body.classList.remove("locked"); // body全体を表示
+        } else {
+          error.textContent = "パスワードが違います";
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
